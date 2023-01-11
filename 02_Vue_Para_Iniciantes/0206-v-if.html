@@ -5,24 +5,27 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="../node_modules/vue/dist/vue.js"></script>
-    <title>Vue.js - 0204</title>
+    <title>Vue.js - 0206</title>
   </head>
+
   <body>
     <div id="app">
-      <a :href="link">Link Google</a>
-      <p :class="cor" class="ativo">Texto</p>
-      <p :class="comprou ? liberar : naoLiberar">O cliente comprou?</p>
+      <template v-if="logado">
+        <p>Usuario está Logado</p>
+        <button @click="logado = false">Deslogar</button>
+      </template>
+      <template v-else>
+        <p>Usuario está Deslogado</p>
+        <button @click="logado = true">Logar</button>
+      </template>
+      <p v-show="logado">Olá, Bem vindo!</p>
     </div>
 
     <script>
       const vm = new Vue({
         el: "#app",
         data: {
-          link: "https://google.com",
-          cor: "azul",
-          liberar: "verde",
-          naoLiberar: "vermelhor",
-          comprou: true,
+          logado: true,
         },
       });
     </script>

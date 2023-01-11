@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <title>Vue.js - 0205</title>
+  </head>
+  <body>
+    <!--
+      Utilizando API
+      https://api.origamid.dev/stock/aapl/quote
+
+      Adicione um evento de clique a cada <a> do html
+      acima e previna o comportamento padrão.
+
+      Faça o fetch dos dados do href ao click e mostre na
+      interface o companyName, latestPrice, marketCap
+    -->
+
+    <div id="data">
+      <ul>
+        <li>
+          <a
+            @click.prevent="puxarAcao"
+            href="https://api.origamid.dev/stock/aapl/quote"
+            >Apple</a
+          >
+        </li>
+        <li>
+          <a
+            @click.prevent="puxarAcao"
+            href="https://api.origamid.dev/stock/googl/quote"
+            >Google</a
+          >
+        </li>
+        <li>
+          <a
+            @click.prevent="puxarAcao"
+            href="https://api.origamid.dev/stock/amzn/quote"
+            >Amazon</a
+          >
+        </li>
+        <li>
+          <a
+            @click.prevent="puxarAcao"
+            href="https://api.origamid.dev/stock/ebay/quote"
+            >Ebay</a
+          >
+        </li>
+        <li>
+          <a
+            @click.prevent="puxarAcao"
+            href="https://api.origamid.dev/stock/pypl/quote"
+            >Paypal</a
+          >
+        </li>
+      </ul>
+
+      <div>
+        {{acao.companyName}} - {{acao.latestPrice}} - {{acao.marketCap}}
+      </div>
+    </div>
+
+    <script>
+      const vm = new Vue({
+        el: "#data",
+        data: {
+          acao: {},
+        },
+        methods: {
+          puxarAcao(e) {
+            const url = e.currentTarget.href;
+            fetch(url)
+              .then((r) => r.json())
+              .then((r) => {
+                this.acao = r;
+              });
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

@@ -5,24 +5,28 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="../node_modules/vue/dist/vue.js"></script>
-    <title>Vue.js - 0204</title>
+    <title>Vue.js - 0205</title>
   </head>
+
   <body>
     <div id="app">
-      <a :href="link">Link Google</a>
-      <p :class="cor" class="ativo">Texto</p>
-      <p :class="comprou ? liberar : naoLiberar">O cliente comprou?</p>
+      <div @mousemove="handleMouse">Mouse X: {{mouse.x}}</div>
+      <input @keyup="handleKey" type="text" />
     </div>
 
     <script>
       const vm = new Vue({
         el: "#app",
         data: {
-          link: "https://google.com",
-          cor: "azul",
-          liberar: "verde",
-          naoLiberar: "vermelhor",
-          comprou: true,
+          mouse: "",
+        },
+        methods: {
+          handleKey(event) {
+            console.log(event.key);
+          },
+          handleMouse(event) {
+            this.mouse = event;
+          },
         },
       });
     </script>
