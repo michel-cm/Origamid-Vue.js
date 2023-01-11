@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <title>Vue.js - 0204</title>
+  </head>
+  <body>
+    <!--
+      Utilizando as API's
+      https://api.origamid.dev/stock/aapl/quote
+      https://api.origamid.dev/stock/googl/quote
+
+      - Compare o marketCap (valor de
+      mercado) entre ambas.
+
+      - Mostre o nome das empresas e o valor
+      na interace (companyName e marketCap).
+
+      - Mude a cor para verde o nome da empresa com
+      maior marketCap e vermelho a com menor.
+    -->
+
+    <style>
+      .verde {
+        color: green;
+      }
+      .vermelho {
+        color: red;
+      }
+    </style>
+
+    <div id="app">
+      <p>
+        Empresa 1:
+        <span :class="google.marketCap > apple.marketCap ? 'verde' : 'vermelho'"
+          >{{apple.companyName}}</span
+        >
+        com marketCap de: {{apple.marketCap}}
+      </p>
+      <p>
+        Empresa 2:
+        <span :class="apple.marketCap > google.marketCap ? 'verde' : 'vermelho'"
+          >{{google.companyName}}</span
+        >
+        com marketCap de: {{google.marketCap}}
+      </p>
+    </div>
+
+    <script>
+      const vm = new Vue({
+        el: "#app",
+        data: {
+          apple: {},
+          google: {},
+        },
+        methods: {
+          fetchApple() {
+            fetch("https://api.origamid.dev/stock/aapl/quote")
+              .then((response) => response.json())
+              .then((appel) => {
+                this.apple = appel;
+              });
+          },
+          fetchGoogle() {
+            fetch("https://api.origamid.dev/stock/googl/quote")
+              .then((response) => response.json())
+              .then((google) => {
+                this.google = google;
+              });
+          },
+          puxarDados() {
+            this.fetchApple();
+            this.fetchGoogle();
+          },
+        },
+      });
+      vm.puxarDados();
+    </script>
+  </body>
+</html>
