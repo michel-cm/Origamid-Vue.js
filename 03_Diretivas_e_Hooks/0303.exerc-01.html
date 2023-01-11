@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <title>Vue.js - 0303</title>
+  </head>
+  <body>
+    <!-- 
+    1 - Crie um criador de botões.
+
+    O usuário poderá definir:
+    width,
+    height,
+    font-size,
+    font-family,
+    text-align,
+    background,
+    color,
+    border-radius,
+
+    As escolhas serão feitas em campos de
+    formulário. Cada escolha deverá ser 
+    refletida em um elemento (o botão).
+  -->
+
+    <div id="app">
+      <label for="background">Background</label>
+      <input id="background" type="color" v-model="btn.background" />
+
+      <label for="width">Width</label>
+      <input id="width" type="text" v-model="btn.width" />
+
+      <label for="height">Height</label>
+      <input id="height" type="text" v-model="btn.height" />
+
+      <label for="fontSize">FontSize</label>
+      <input id="fontSize" type="text" v-model="btn.fontSize" />
+
+      <label for="fontFamily">fontFamily</label>
+      <input id="fontFamily" type="text" v-model="btn.fontFamily" />
+
+      <label for="borderRadius">BorderRadius</label>
+      <input id="borderRadius" type="text" v-model="btn.borderRadius" />
+
+      <label for="color">color</label>
+      <input id="color" type="color" v-model="btn.color" />
+
+      <a :style="btn" href="">Clique Aqui</a>
+    </div>
+
+    <script>
+      const vm = new Vue({
+        el: "#app",
+        data: {
+          btn: {
+            background: "",
+            width: "100px",
+            height: "40px",
+            fontSize: "16px",
+            fontFamily: "monospace",
+            borderRadius: "0px",
+            color: "",
+          },
+        },
+      });
+    </script>
+
+    <style>
+      #app {
+        margin: 3rem 0 0 3rem;
+      }
+
+      label {
+        display: block;
+      }
+
+      a {
+        margin-top: 5rem;
+        display: block;
+      }
+    </style>
+  </body>
+</html>
