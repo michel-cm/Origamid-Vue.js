@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <title>Vue.js - 0303</title>
+  </head>
+  <body>
+    <!-- 
+  Crie um contador, onde seja possível clicar em
+  um botão e adicionar +1 ao número.
+
+  Toda vez que o contador mudar, mude o título da página
+  para o total do contador. Utilize um hook para isso
+ -->
+    <div id="app">
+      <button @click="contador++">Adicionar {{contador}}</button>
+    </div>
+
+    <script>
+      const vm = new Vue({
+        el: "#app",
+        data: {
+          contador: 0,
+        },
+        updated() {
+          document.title = this.contador;
+        },
+      });
+    </script>
+  </body>
+</html>

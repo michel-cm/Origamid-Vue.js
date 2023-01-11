@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <title>Vue.js - 0305</title>
+  </head>
+  <body>
+    <!-- Utilize a api do github para
+  mostrar todos os seus dados na tela.
+  Faça o fetch das informações utilizando
+  um dos hooks do vue:
+
+  https://api.github.com/users/origamid (utilize o seu usuário)
+  -->
+
+    <div id="app">
+      <ul>
+        <li v-for="(value, key, index) in github" :key="index">
+          {{key}}: {{value}}
+        </li>
+      </ul>
+    </div>
+
+    <script>
+      const vm = new Vue({
+        el: "#app",
+        data: {
+          github: {},
+        },
+        methods: {
+          puxarGithub() {
+            fetch("https://api.github.com/users/michel-cm")
+              .then((res) => res.json())
+              .then((res) => {
+                this.github = res;
+              });
+          },
+        },
+        created() {
+          this.puxarGithub();
+        },
+      });
+    </script>
+  </body>
+</html>
