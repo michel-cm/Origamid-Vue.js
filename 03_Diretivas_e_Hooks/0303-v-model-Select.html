@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <title>Vue.js - 0303</title>
+  </head>
+  <body>
+    <div id="app">
+      <select v-model="fruta">
+        <option disabled value="">Selecione uma fruta</option>
+        <option value="banana">Banana</option>
+        <option value="morango">Morango</option>
+        <option value="uva">Uva</option>
+      </select>
+
+      <p>fruta: {{fruta}}</p>
+    </div>
+
+    <script>
+      const vm = new Vue({
+        el: "#app",
+        data: {
+          fruta: "",
+        },
+      });
+    </script>
+  </body>
+</html>

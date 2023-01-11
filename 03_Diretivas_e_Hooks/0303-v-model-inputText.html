@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <title>Vue.js - 0303</title>
+  </head>
+  <body>
+    <div id="app">
+      <input v-model="nome" placeholder="nome" />
+      <textarea v-model="mensagem" placeholder="mensagem"></textarea>
+      <p>{{nome}}</p>
+      <p>{{mensagem}}</p>
+    </div>
+
+    <script>
+      const vm = new Vue({
+        el: "#app",
+        data: {
+          nome: "",
+          mensagem: "",
+        },
+      });
+    </script>
+  </body>
+</html>
