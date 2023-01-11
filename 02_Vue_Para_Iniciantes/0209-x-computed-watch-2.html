@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <title>Vue.js - 0209</title>
+  </head>
+  <body>
+    <!--
+    Você possui o nome e sobrenome do usuário em data,
+    crie uma propriedade computed que retorne o nome completo
+    
+    Utilize a rest API para puxar as capitais dos paises
+    Use um campo de select, onde o usuário pode selecionar o país.
+    https://restcountries.com/v2/all
+
+    Com uma função watch, mude a capital de acordo com o país selecionado:
+
+    Ex de campo select:
+
+    <select name="paises" id="paises" v-model="selecionado">
+      <option v-for="pais in paises" :value="pais.name">
+        {{pais.name}}
+      </option>
+    </select>
+  -->
+
+    <div id="app">
+      <p>Nome Completo: {{nomeCompleto}}</p>
+      <div>
+        <select name="paises" id="paises" v-model="paisSelecionado">
+          <option v-for="pais in paises" :value="pais.name">
+            {{pais.name}}
+          </option>
+        </select>
+        <span>Capital: {{capital.capital}} </span>
+      </div>
+    </div>
+
+    <script>
+      const vm = new Vue({
+        el: "#app",
+        data: {
+          nome: "Michel",
+          sobrenome: "Corrêa",
+
+          paises: [],
+          paisSelecionado: "",
+          capital: "",
+        },
+        methods: {
+          fetchPaises() {
+            fetch("https://restcountries.com/v2/all")
+              .then((r) => r.json())
+              .then((r) => {
+                this.paises = r;
+              });
+          },
+        },
+        computed: {
+          nomeCompleto() {
+            return this.nome + " " + this.sobrenome;
+          },
+        },
+        watch: {
+          paisSelecionado(valor) {
+            this.capital = this.paises.find((pais) => pais.name === valor);
+          },
+        },
+      });
+      vm.fetchPaises();
+    </script>
+  </body>
+</html>
