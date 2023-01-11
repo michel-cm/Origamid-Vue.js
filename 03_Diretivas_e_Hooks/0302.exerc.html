@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <title>Vue.js - 0302</title>
+  </head>
+  <body>
+    <!-- Crie um botão que troque a orientação da lista, ou seja,
+  ao invés de 4 colunas, uma única coluna com 4 linhas.
+
+  O botão será responsável por trocar para lista e também
+  responsável por reverter esse processo.
+  Utilize adição/remoção de classes para atingir este efeito.
+
+  A classe column já está criada, basta utilizar ela.
+  -->
+
+    <div id="app">
+      <ul :class="{column: estaAtivo}">
+        <li>Sobre</li>
+        <li>Produtos</li>
+        <li>Serviços</li>
+        <li>Contato</li>
+      </ul>
+
+      <button @click="activeList">Alternar Lista</button>
+    </div>
+
+    <script>
+      const vm = new Vue({
+        el: "#app",
+        data: {
+          estaAtivo: false,
+        },
+        methods: {
+          activeList() {
+            this.estaAtivo = !this.estaAtivo;
+          },
+        },
+      });
+    </script>
+
+    <style>
+      ul {
+        display: flex;
+        flex-wrap: wrap;
+        font-family: monospace;
+        list-style: none;
+        padding: 0px;
+        margin: 0px;
+      }
+      .column {
+        flex-direction: column;
+      }
+      li {
+        padding: 20px;
+        background: #84e;
+        color: white;
+        border-radius: 4px;
+        margin: 10px;
+        flex: 1;
+        text-align: center;
+      }
+    </style>
+  </body>
+</html>

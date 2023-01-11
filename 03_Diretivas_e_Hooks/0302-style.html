@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <title>Vue.js - 0302</title>
+  </head>
+  <body>
+    <div id="app">
+      <p
+        :style="{background: bgColor, color: textColor, fontSize: tamanho + 'px'}"
+      >
+        Texto Ativo
+      </p>
+      <button @click="tamanho++">Aumentar</button>
+    </div>
+
+    <div id="app2">
+      <p :style="estiloBotao">Texto Ativo</p>
+
+      <p :style="estiloParagrafo">Texto com estilo computed</p>
+    </div>
+
+    <script>
+      const vm = new Vue({
+        el: "#app",
+        data: {
+          bgColor: "tomato",
+          textColor: "#fff",
+          tamanho: 20,
+        },
+      });
+
+      const vm2 = new Vue({
+        el: "#app2",
+        data: {
+          estiloBotao: {
+            background: "green",
+            color: "red",
+            fontSize: "16px",
+          },
+        },
+        computed: {
+          estiloParagrafo() {
+            const tamanho = Math.random() * 100;
+            return {
+              fontSize: tamanho + "px",
+            };
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

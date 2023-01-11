@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <title>Vue.js - 0302</title>
+  </head>
+  <body>
+    <style>
+      .ativo {
+        background-color: pink;
+        color: #fff;
+        font-weight: bold;
+      }
+
+      .vermelho {
+        background-color: red;
+      }
+
+      .azul {
+        color: blue;
+      }
+    </style>
+
+    <div id="app">
+      <p :class="{ ativo: estaAtivo, cor: possuiCor }">Texto Ativo</p>
+      <button @click="estaAtivo = !estaAtivo">Ativar / Desativar</button>
+      <p :class="[background, textoColor, {ativo: estaAtivo}]">texto color</p>
+    </div>
+
+    <script>
+      const vm = new Vue({
+        el: "#app",
+        data: {
+          background: "vermelho",
+          textoColor: "azul",
+          estaAtivo: false,
+          possuiCor: false,
+        },
+      });
+    </script>
+  </body>
+</html>
