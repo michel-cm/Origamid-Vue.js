@@ -18,12 +18,19 @@
   A classe column já está criada, basta utilizar ela.
   -->
 
+    <!-- Crie um gerador de cores, toda vez que o usuário clicar
+  em cima da lista, os itens trocam de cor.
+
+  Gerador de cor:
+  const color = `hsl(${Math.random() * 360}, 100%, 50%)`;
+  -->
+
     <div id="app">
-      <ul :class="{column: estaAtivo}">
-        <li>Sobre</li>
-        <li>Produtos</li>
-        <li>Serviços</li>
-        <li>Contato</li>
+      <ul :class="{column: estaAtivo}" @click="gerarCor">
+        <li :style="{background: bgColor}">Sobre</li>
+        <li :style="{background: bgColor}">Produtos</li>
+        <li :style="{background: bgColor}">Serviços</li>
+        <li :style="{background: bgColor}">Contato</li>
       </ul>
 
       <button @click="activeList">Alternar Lista</button>
@@ -34,10 +41,15 @@
         el: "#app",
         data: {
           estaAtivo: false,
+          bgColor: "tomato",
         },
         methods: {
           activeList() {
             this.estaAtivo = !this.estaAtivo;
+          },
+          gerarCor() {
+            const color = `hsl(${Math.random() * 360}, 100%, 50%)`;
+            this.bgColor = color;
           },
         },
       });
