@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <title>Vue.js - 0203</title>
+  </head>
+  <body>
+    <div id="app">
+      {{total}}
+      <button @click="diminuir">Diminuir</button>
+      <button @click="incrementar">Incrementar</button>
+    </div>
+
+    <br />
+
+    <div id="app2">
+      {{compra}}
+      <button @click="mudarCompra('Guitarra')">Guitarra</button>
+      <button @click="mudarCompra('Violão')">Violão</button>
+    </div>
+
+    <script>
+      const vm = new Vue({
+        el: "#app",
+        data: {
+          total: 0,
+        },
+        methods: {
+          incrementar() {
+            this.feedbackTeste();
+            this.total++;
+          },
+          diminuir() {
+            this.feedbackTeste();
+            this.total--;
+          },
+          feedbackTeste() {
+            console.log("Método Ativado");
+          },
+        },
+      });
+
+      const vm2 = new Vue({
+        el: "#app2",
+        data: {
+          compra: "",
+        },
+        methods: {
+          mudarCompra(instrumento) {
+            this.compra = instrumento;
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <title>Vue.js - 0203</title>
+  </head>
+  <body>
+    <div id="data">
+      <button @click="fetchAcoes">Buscar Ações</button>
+      <p>Lateste Price: {{acoes.latestPrice}}</p>
+      <p>Latest Time: {{acoes.latestTime}}</p>
+      <p>companyName: {{acoes.companyName}}</p>
+    </div>
+
+    <script>
+      const vm = new Vue({
+        el: "#data",
+        data: {
+          acoes: {},
+        },
+        methods: {
+          fetchAcoes() {
+            fetch("https://api.origamid.dev/stock/aapl/quote")
+              .then((response) => response.json())
+              .then((json) => {
+                this.acoes = json;
+              });
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
