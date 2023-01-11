@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <title>Vue.js - 0208</title>
+  </head>
+  <body>
+    <div id="app">
+      <ul>
+        <li v-for="(fruta, index) in frutas">{{fruta}} - {{index}}</li>
+      </ul>
+      <button @click="removerFruta">Remover Fruta</button>
+      <button @click="modificarItem">Modificar Fruta</button>
+      <ul>
+        <li v-for="(estado, key) in estados" :key="estado.id">
+          {{key}} - {{estado.nome}} - {{estado.populacao}}
+        </li>
+      </ul>
+      <ul>
+        <li v-for="({nome}, key) in estados">{{nome}}</li>
+      </ul>
+      <div v-for="n in 10">{{n}}</div>
+    </div>
+
+    <script>
+      const vm = new Vue({
+        el: "#app",
+        data: {
+          frutas: ["Banana", "Laranja", "Uva", "Abacate"],
+          estados: {
+            sp: {
+              id: 01,
+              populacao: "45 milhões",
+              nome: "São Paulo",
+            },
+            mg: {
+              id: 02,
+              populacao: "21 milhões",
+              nome: "Minas Gerais",
+            },
+            rj: {
+              id: 03,
+              populacao: "17 milhões",
+              nome: "Rio de Janeiro",
+            },
+          },
+        },
+        methods: {
+          removerFruta() {
+            this.frutas.pop();
+          },
+          modificarItem() {
+            this.$set(this.frutas, 0, "Melancia");
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

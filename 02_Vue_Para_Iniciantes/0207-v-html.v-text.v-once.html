@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <title>Vue.js - 0207</title>
+  </head>
+
+  <body>
+    <div id="app">
+      <span v-html="link"></span> <!-- innerHTML -->
+      <p>{{fruta}} custa R$ 5</p>
+      <p v-text="fruta">custa R$ 5</p> <!-- innerText -->
+
+      <p v-once>Valor inicial: R$ {{total - gasto}}</p> <!-- v-once tira a reatividade -->
+      <button @click="gasto += 5">Comprar Banana R$ 5</button>
+      <p>Total gasto: R$ {{gasto}}</p>
+      <p>Valor final: R$ {{total-gasto}}</p>
+    </div>
+
+    <script>
+      const vm = new Vue({
+        el: "#app",
+        data: {
+          link: "<a href='https://www.google.com'>Google</a>",
+          fruta: "Banana",
+          total: 150,
+          gasto: 20
+        },
+      });
+    </script>
+  </body>
+</html>
