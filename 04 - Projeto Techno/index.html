@@ -16,15 +16,9 @@
     <div id="app">
       <header class="header">
         <img class="logo" src="./assets/techno.svg" alt="Techno" />
-        <div class="carrinhoMenu">
+        <div class="carrinhoMenu" @click="carrinhoAtivo = true">
           {{carrinhoTotal | numeroPreco}} | {{carrinho.length}}
         </div>
-        <ul>
-          <li v-for="item, index in carrinho">
-            <p>{{item.nome}}</p>
-            <button @click="removerProduto(index)">X</button>
-          </li>
-        </ul>
       </header>
 
       <section class="produtos">
@@ -75,6 +69,31 @@
               </li>
             </ul>
           </div>
+        </div>
+      </section>
+
+      <section
+        class="carrinhoModal"
+        :class="{ativo: carrinhoAtivo}"
+        @click="cliqueForaCarrinho"
+      >
+        <div class="carrinhoContainer">
+          <button class="modalFechar" @click="carrinhoAtivo = false">X</button>
+          <h2 class="carrinhoTitulo">Carrinho</h2>
+          <div v-if="carrinho.length > 0">
+            <ul class="carrinhoLista">
+              <li v-for="(item,index) in carrinho" class="carrinhoItem">
+                <p>{{item.nome}}</p>
+                <p class="carrinhoPreco">{{item.preco | numeroPreco}}</p>
+                <button class="carrinhoRemover" @click="removerProduto(index)">
+                  X
+                </button>
+              </li>
+            </ul>
+            <p class="carrinhoTotal">Total: {{carrinhoTotal | numeroPreco}}</p>
+            <button class="carrinhoFinalizar">Finalizar Compra</button>
+          </div>
+          <p v-else>Carrinho Vazio</p>
         </div>
       </section>
 
