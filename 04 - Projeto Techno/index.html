@@ -12,11 +12,17 @@
     <link rel="stylesheet" href="./style.css" />
     <title>Techno</title>
   </head>
-
   <body>
     <div id="app">
+      <section class="modal">{{produto}}</section>
+
       <section class="produtos">
-        <div v-for="produto in produtos" class="produto" ::key="produto.id">
+        <div
+          v-for="produto in produtos"
+          @click="fetchProduto(produto.id)"
+          class="produto"
+          :key="produto.id"
+        >
           <img :src="produto.img" :alt="produto.nome" class="produtoImg" />
           <div class="produtoInfo">
             <span class="produtoPreco">{{produto.preco | numeroPreco}}</span>
