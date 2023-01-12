@@ -9,6 +9,39 @@ ul {
 }
 
 body {
-  background: linear-gradient(to right, #1a1a1a 30%, #fff 30%);
+  background: linear-gradient(to right, #101010 30%, #fff 30%);
   font-family: "Noto Serif";
+}
+
+#app {
+  padding: 0 80px;
+}
+
+/* LISTA PRODUTOS */
+
+.produtos {
+  max-width: 900px;
+  margin: 100px auto 0 auto;
+}
+
+.produto {
+  display: flex;
+  align-items: center;
+  margin-bottom: 40px;
+  background: #fff;
+  box-shadow: 0 0 2rem rgba(0, 0, 0, 0.1);
+}
+
+.produtoImg {
+  max-width: 300px;
+  margin-right: 40px;
+}
+
+.produtoTitulo {
+  font-size: 3rem;
+  line-height: 1;
+}
+
+.produtoPreco {
+  color: rgba(0, 0, 0, 0.5);
 }
