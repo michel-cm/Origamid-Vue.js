@@ -77,6 +77,10 @@
           </div>
         </div>
       </section>
+
+      <div class="alerta" :class="{ativo: alertaAtivo}">
+        <p class="alertaMsg">{{mensagemAlerta}}</p>
+      </div>
     </div>
 
     <script src="./app.js"></script>
