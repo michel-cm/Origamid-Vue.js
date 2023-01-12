@@ -46,3 +46,9 @@ body {
 .produtoPreco {
   color: rgba(0, 0, 0, 0.5);
 }
+
+/* MODAL */
+
+.modal {
+  background: #FFF;
+}
