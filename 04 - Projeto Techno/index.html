@@ -14,31 +14,18 @@
   </head>
   <body>
     <div id="app">
-      <section class="modal" v-if="produto" @click="fecharModal">
-        <div class="modalContainer">
-          <div class="modalImg">
-            <img :src="produto.img" :alt="produto.nome" />
-          </div>
-          <div class="modalDados">
-            <button @click="produto = false" class="modalFechar">X</button>
-            <span class="modalPreco">{{produto.preco | numeroPreco}}</span>
-            <h2 class="modalTitulo">{{produto.nome}}</h2>
-            <p>{{produto.descricao}}</p>
-            <button class="modalBtn">Adicionar Item</button>
-          </div>
-          <div class="modalAvaliacoes">
-            <h2 class="avaliacoesSubtitulo">Avaliações</h2>
-            <ul>
-              <li v-for="avaliacao in produto.reviews" class="avaliacao">
-                <p class="avaliacaoDescricao">{{avaliacao.descricao}}</p>
-                <p class="avaliacaoUsuario">
-                  {{avaliacao.nome}} | {{avaliacao.estrelas}} estrelas
-                </p>
-              </li>
-            </ul>
-          </div>
+      <header class="header">
+        <img class="logo" src="./assets/techno.svg" alt="Techno" />
+        <div class="carrinhoMenu">
+          {{carrinhoTotal | numeroPreco}} | {{carrinho.length}}
         </div>
-      </section>
+        <ul>
+          <li v-for="item, index in carrinho">
+            <p>{{item.nome}}</p>
+            <button @click="removerProduto(index)">X</button>
+          </li>
+        </ul>
+      </header>
 
       <section class="produtos">
         <div
@@ -51,6 +38,42 @@
           <div class="produtoInfo">
             <span class="produtoPreco">{{produto.preco | numeroPreco}}</span>
             <h2 class="produtoTitulo">{{produto.nome}}</h2>
+          </div>
+        </div>
+      </section>
+
+      <section class="modal" v-if="produto" @click="fecharModal">
+        <div class="modalContainer">
+          <div class="modalImg">
+            <img :src="produto.img" :alt="produto.nome" />
+          </div>
+          <div class="modalDados">
+            <button @click="produto = false" class="modalFechar">X</button>
+            <span class="modalPreco">{{produto.preco | numeroPreco}}</span>
+            <h2 class="modalTitulo">{{produto.nome}}</h2>
+            <p>{{produto.descricao}}</p>
+
+            <button
+              v-if="produto.estoque > 0"
+              @click="adicionarProduto"
+              class="modalBtn"
+            >
+              Adicionar Item
+            </button>
+            <button v-else disabled class="modalBtn esgotado">
+              Produto Esgotado
+            </button>
+          </div>
+          <div class="modalAvaliacoes">
+            <h2 class="avaliacoesSubtitulo">Avaliações</h2>
+            <ul>
+              <li v-for="avaliacao in produto.reviews" class="avaliacao">
+                <p class="avaliacaoDescricao">{{avaliacao.descricao}}</p>
+                <p class="avaliacaoUsuario">
+                  {{avaliacao.nome}} | {{avaliacao.estrelas}} estrelas
+                </p>
+              </li>
+            </ul>
           </div>
         </div>
       </section>
