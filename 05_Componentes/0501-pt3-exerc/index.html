@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script src="./vue.js"></script>
+    <link
+      href="https://fonts.googleapis.com/css?family=Noto+Serif:400,400i,700"
+      rel="stylesheet"
+    />
+    <title>05-Componentes</title>
+  </head>
+  <!-- 
+  Crie uma tela com 3 diferentes Componentes.
+
+  1 - Mostre o tempo do dia usando a API:
+  https://api.origamid.dev/weather/rio
+
+  2 - Mostre a relação dolar/real
+  https://api.origamid.dev/exchange/usd
+
+  3 - Mostre o valor de mercado da Apple (marketCap)
+  https://api.origamid.dev/stock/aapl/quote
+
+  Crie os componentes em arquivos separados e utilize import/export
+  O componente 1 deve ser registrado globalmente
+  O componente 2 deve ser registrado localmente dentro do componente 3.
+  O componente 3 deve ser registrado localmente da instância Vue.js
+ -->
+
+  <body>
+    <div id="app">
+      <tempo-hoje></tempo-hoje>
+      <acao-hoje></acao-hoje>
+    </div>
+
+    <script type="module">
+      import TempoHoje from "./components/TempoHoje.js";
+      import AcaoHoje from "./components/AcaoHoje.js";
+
+      Vue.component("TempoHoje", TempoHoje);
+
+      const vm = new Vue({
+        el: "#app",
+        components: {
+          AcaoHoje,
+        },
+      });
+    </script>
+  </body>
+</html>
