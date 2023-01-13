@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script src="./vue.js"></script>
+    <link
+      href="https://fonts.googleapis.com/css?family=Noto+Serif:400,400i,700"
+      rel="stylesheet"
+    />
+    <title>05-Componentes</title>
+  </head>
+  <body>
+    <div id="app">
+      <botao-contador></botao-contador>
+
+      <componente-local></componente-local>
+      <componente-local2></componente-local2>
+    </div>
+
+    <script>
+      // componente global
+      Vue.component("BotaoContador", {
+        data() {
+          return {
+            mensagem: "Olá Mundo!",
+            total: 0,
+          };
+        },
+        template: `<button @click="total++">Contar: {{total}}</button>`,
+      });
+
+      const ComponenteLocal = {
+        name: "ComponenteLocal",
+        template: `<p>Componente Local</p>`,
+      };
+
+      const ComponenteLocal2 = {
+        name: "ComponenteLocal",
+        template: `<p>Componente Local2</p>`,
+      };
+
+      const vm = new Vue({
+        el: "#app",
+        components: {
+          ComponenteLocal,
+          ComponenteLocal2,
+        },
+      });
+    </script>
+  </body>
+</html>
